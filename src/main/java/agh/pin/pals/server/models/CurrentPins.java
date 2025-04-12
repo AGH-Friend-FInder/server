@@ -1,5 +1,6 @@
 package agh.pin.pals.server.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import jakarta.persistence.*;
@@ -24,10 +25,12 @@ public class CurrentPins {
             joinColumns = @JoinColumn(name = "current_pins_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
+    @JsonBackReference
     private List<Group> groups;
 
     @ManyToOne
     @JoinColumn(name = "host_user_id", referencedColumnName = "id")
+    @JsonBackReference
     private User hostUser;
 
     private String pin;
