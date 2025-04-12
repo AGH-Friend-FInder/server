@@ -39,12 +39,24 @@ zwracana odpowiedź
 {
   "id": "number",
   "color": "string",
-  "group_name": "string",
-  "is_public": "bool"
+  "groupName": "string",
+  "isPublic": "bool"
 }
 
 ```
 
-GET /groups/{id} to get a group by ID
+### GET /groups/public to get list of public groups
+```
+http://localhost:8080/groups/public
+```
+Response:
+```json
+[{
+  "id": "number",
+  "color": "string",
+  "groupName": "string",
+  "isPublic": "bool"
+}, ...]
+```
 
 
