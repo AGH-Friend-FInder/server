@@ -1,17 +1,15 @@
 # PinPals server
 
 
-POST /users to create a user
 
-GET /users/{id} to get a user by ID
-
-POST /groups to create a group
-
-GET /groups/{id} to get a group by ID
 
 ## enpoints
 ### GET /users/{id} to get a user by ID
-zwracana odpowiedź
+
+```
+http://localhost:8080/users/{id}
+```
+Response 
 ```json
 {
   "id": "number",
@@ -23,7 +21,10 @@ zwracana odpowiedź
 ```
 
 ### POST /users to create a user
-zapytanie w formie:
+```
+http://localhost:8080/users
+```
+Post:
 ```json
 {
   "email": "string",
@@ -34,7 +35,10 @@ zapytanie w formie:
 
 
 ### GET /groups/{id} to get a group by ID
-zwracana odpowiedź
+```
+http://localhost:8080/group/{id}
+```
+Response
 ```json
 {
   "id": "number",
