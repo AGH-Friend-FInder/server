@@ -33,7 +33,8 @@ public class CurrentPinsService {
         currentPinsRepository.deleteById(id);
     }
 
-//    public List<CurrentPins> getVisibleCurrentPins(Integer id) {
-//
-//    }
+    public List<CurrentPins> getVisibleCurrentPins(Integer id) {
+        return currentPinsRepository.findAllPinsForUser(id);
+
+    }
 }

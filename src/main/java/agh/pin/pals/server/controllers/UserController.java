@@ -2,6 +2,7 @@ package agh.pin.pals.server.controllers;
 
 import agh.pin.pals.server.dto.UserDTO;
 import agh.pin.pals.server.models.User;
+import agh.pin.pals.server.services.GroupService;
 import agh.pin.pals.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,15 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(401).body("Invalid credentials.");
         }
+    }
+
+    @PostMapping("/{user_id}/{group_id}")
+    public User addUserToGroup(@PathVariable Integer user_id, @PathVariable Integer group_id) {
+        return userService.addUserToGroup(user_id,group_id);
+    }
+    @DeleteMapping("/{user_id}/{group_id}")
+    public void deleteUserFromGroup(@PathVariable Integer user_id, @PathVariable Integer group_id) {
+        userService.removeUserFromGroup(user_id,group_id);
     }
 }
 

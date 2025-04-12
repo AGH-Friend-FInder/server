@@ -34,9 +34,11 @@ public class CurrentPinsController {
         currentPinsService.deleteCurrentPinById(id);
     }
 
-//    @GetMapping("/visible/{id}")
-//    public List<CurrentPins> getVisibleCurrentPins(@PathVariable Integer id) {
-//
-//    }
+    @GetMapping("/visible/{id}")
+    public List<CurrentPins> getVisibleCurrentPins(@PathVariable Integer id) {
+        return currentPinsService.getVisibleCurrentPins(id);
+
+
+    }
 }
 
