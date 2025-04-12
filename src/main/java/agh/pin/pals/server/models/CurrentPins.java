@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,9 +18,13 @@ public class CurrentPins {
 
     private Integer numberOfPeople;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id", referencedColumnName = "id")
-    private Group group;
+    @ManyToMany
+    @JoinTable(
+            name = "current_pins_groups",
+            joinColumns = @JoinColumn(name = "current_pins_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private List<Group> groups;
 
     @ManyToOne
     @JoinColumn(name = "host_user_id", referencedColumnName = "id")

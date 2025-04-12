@@ -5,6 +5,8 @@ import lombok.Data;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.List;
+
 @Data
 @Entity
 @Getter
@@ -17,5 +19,9 @@ public class Group {
     private String groupName;
     private Boolean isPublic;
     private String color;
+    @ManyToMany(mappedBy = "groups")
+    private List<CurrentPins> currentPins;
+    @ManyToMany(mappedBy = "groups")
+    private List<User> users;
 }
 
