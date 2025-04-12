@@ -1,17 +1,50 @@
-# Getting Started
+# PinPals server
 
-### Reference Documentation
 
-For further reference, please consider the following sections:
+POST /users to create a user
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/3.4.4/gradle-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.4.4/gradle-plugin/packaging-oci-image.html)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/3.4.4/reference/using/devtools.html)
+GET /users/{id} to get a user by ID
 
-### Additional Links
+POST /groups to create a group
 
-These additional references should also help you:
+GET /groups/{id} to get a group by ID
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+## enpoints
+### GET /users/{id} to get a user by ID
+zwracana odpowiedź
+```json
+{
+  "id": "number",
+  "email": "string",
+  "username": "string",
+  "password": "string"
+}
+
+```
+
+### POST /users to create a user
+zapytanie w formie:
+```json
+{
+  "email": "string",
+  "username": "string",
+  "password": "string"
+}
+```
+
+
+### GET /groups/{id} to get a group by ID
+zwracana odpowiedź
+```json
+{
+  "id": "number",
+  "color": "string",
+  "group_name": "string",
+  "is_public": "bool"
+}
+
+```
+
+GET /groups/{id} to get a group by ID
+
 
