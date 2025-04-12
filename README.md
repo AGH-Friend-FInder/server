@@ -59,4 +59,52 @@ Response:
 }, ...]
 ```
 
+### POST /users/register to register user
+```
+http://localhost:8080/users/register
+```
+Request:
+```json
+{
+"email": "string",
+"username": "string",
+"password": "string"
+}
+```
+Response:
+```json
+{
+  "id": 999,
+  "email": "string",
+  "username": "string",
+  "password": "string",
+  "groups": []
+}
+```
+
+### POST /users/logic to register user
+```
+http://localhost:8080/users/login
+```
+Either email or username must be provided
+
+Request:
+```json
+{
+"email": "string",
+"username": "string",
+"password": "string"
+}
+```
+Response:
+```json
+{
+  "id": 999,
+  "email": "string",
+  "username": "string",
+  "password": "string",
+  "groups": []
+}
+```
+
 

@@ -42,7 +42,7 @@ public class UserService {
         if (userDTO == null) throw new IllegalArgumentException("No user information");
         if (userDTO.getEmail() == null && userDTO.getUsername() == null) throw new IllegalArgumentException("Provide login or email");
         User user;
-        if (userDTO.getEmail() != null) {
+        if (userDTO.getEmail() != null && !userDTO.getEmail().isBlank()) {
             user = userRepository.findUserByEmail(userDTO.getEmail());
             if (user == null) {
                 throw new IllegalArgumentException("Invalid email");
