@@ -1,8 +1,10 @@
 package agh.pin.pals.server.controllers;
 
+import agh.pin.pals.server.dto.GroupDTO;
 import agh.pin.pals.server.models.Group;
 import agh.pin.pals.server.repositories.GroupRepository;
 import agh.pin.pals.server.services.GroupService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +24,14 @@ public class GroupController {
     }
 
     @PostMapping
-    public Group createGroup(@RequestBody Group group) {
+    public Group createGroup(@Valid @RequestBody GroupDTO groupDTO) {
+        Group group = new Group();
+        group.setGroupName(groupDTO.getGroupName());
+        group.setIsPublic(groupDTO.getIsPublic());
+        group.setColor(groupDTO.getColor());
         return groupService.createGroup(group);
     }
+
 
     @GetMapping("/{id}")
     public Group getGroupById(@PathVariable Long id) {
