@@ -8,6 +8,8 @@ import lombok.Data;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +38,10 @@ public class CurrentPinsDTO {
         this.longitude = currentPins.getLongitude();
         Timestamp expireAt = currentPins.getExpireAt();
         if (expireAt != null) {
-            this.expireAtMinutes = Duration.between(Instant.now(), expireAt.toInstant()).toMinutes();
+            ZoneId zone = ZoneId.of("Europe/Warsaw");
+            ZonedDateTime nowInPoland = ZonedDateTime.now(zone);
+            ZonedDateTime expireAtInPoland = expireAt.toInstant().atZone(zone);
+            this.expireAtMinutes = Duration.between(nowInPoland, expireAtInPoland).toMinutes();
         } else {
             this.expireAtMinutes = null;
         }
