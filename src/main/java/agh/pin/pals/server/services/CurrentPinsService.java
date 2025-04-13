@@ -73,7 +73,6 @@ public class CurrentPinsService {
 
     public List<CurrentPins> getVisibleCurrentPins(Long id) {
         return currentPinsRepository.findAllPinsForUser(id);
-
     }
 
 

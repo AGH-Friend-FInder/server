@@ -16,7 +16,5 @@ public class CurrentPinsGroups {
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
-
-    // Optional: other fields, timestamps, etc.
 }
 

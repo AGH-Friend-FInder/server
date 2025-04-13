@@ -28,8 +28,9 @@ public class GroupService {
         group.setGroupName(groupDTO.getGroupName());
         group.setIsPublic(groupDTO.getIsPublic());
         group.setColor(groupDTO.getColor());
-        userService.addUserToGroup(groupDTO.getUserId(), group.getId());
-        return groupRepository.save(group);
+        Group groupResult = groupRepository.save(group);
+        userService.addUserToGroup(groupDTO.getUserId(), groupResult.getId());
+        return groupResult;
     }
 
     public Group getGroupById(Long id) {
