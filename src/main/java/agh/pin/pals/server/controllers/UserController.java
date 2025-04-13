@@ -68,7 +68,6 @@ public class UserController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(401).body("Invalid credentials.");
         }
-        return userService.addUserToGroup(user_id,group_id);
     }
 
     @DeleteMapping("/{user_id}/{group_id}")
