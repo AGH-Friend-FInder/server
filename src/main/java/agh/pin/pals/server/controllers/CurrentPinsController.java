@@ -1,5 +1,6 @@
 package agh.pin.pals.server.controllers;
 
+import agh.pin.pals.server.dto.CurrentPinsDTO;
 import agh.pin.pals.server.models.CurrentPins;
 import agh.pin.pals.server.models.Group;
 import agh.pin.pals.server.services.CurrentPinsService;
@@ -19,9 +20,14 @@ public class CurrentPinsController {
     public CurrentPinsController(final CurrentPinsService currentPinsService) {
         this.currentPinsService = currentPinsService;
     }
-    @PostMapping
-    public CurrentPins createGroup(@RequestBody CurrentPins currentPins) {
-        return currentPinsService.createCurrentPin(currentPins);
+//    @PostMapping
+//    public CurrentPins createCurrenPins(@RequestBody CurrentPins currentPins) {
+//        return currentPinsService.createCurrentPin(currentPins);
+//    }
+
+    @PostMapping()
+    public CurrentPins createCurrentPin(@RequestBody final CurrentPinsDTO currentPinsDTO) {
+        return currentPinsService.createCurrentPin(currentPinsDTO);
     }
 
     @GetMapping("/{id}")
@@ -37,8 +43,12 @@ public class CurrentPinsController {
     @GetMapping("/visible/{id}")
     public List<CurrentPins> getVisibleCurrentPins(@PathVariable Integer id) {
         return currentPinsService.getVisibleCurrentPins(id);
-
-
     }
+
+
+
+
+
+
 }
 

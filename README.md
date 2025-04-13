@@ -136,7 +136,7 @@ http://localhost:8080/pin/{id}
 
 ```
 
-### GET /visible/{user_id} 
+### GET pin/visible/{user_id} 
 get pins visible for a user with {id}
 
 ```
@@ -157,5 +157,46 @@ Response:
     ... 
 ]
 ```
+
+### GET users/group/{user_id}
+
+get user groups
+```
+http://localhost:8080/users/group/{id}
+```
+
+Response:
+```json
+[
+    {
+        "id": "number",
+        "groupName": "string",
+        "isPublic": "bool",
+        "color": "255.255.255"
+    },
+  ...
+]
+```
+
+### POST /pin
+
+```
+http://localhost:8080/users/group/{id}
+```
+
+Request:
+```json
+{
+    "numberOfPeople":"number",
+    "hostUserId": "number",
+    "pin":"string",
+    "latitude": "number",
+    "longitude":"number",
+    "expireAtMinutes":"number",
+    "groupsId":"list<number>"
+}
+```
+
+
 
 
