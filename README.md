@@ -24,7 +24,7 @@ Response
 ```
 http://localhost:8080/users
 ```
-Post:
+Request:
 ```json
 {
   "email": "string",
@@ -38,7 +38,7 @@ Post:
 ```
 http://localhost:8080/group/{id}
 ```
-Response
+Response:
 ```json
 {
   "id": "number",
@@ -109,6 +109,53 @@ Response:
   "password": "string",
   "groups": []
 }
+```
+### GET /pin/{id}
+
+```
+http://localhost:8080/pin/{id}
+
+```
+
+Response:
+```json
+{
+  "id": "number",
+  "numberOfPeople":"number",
+  "pin": "string",
+  "latitude": "number",
+  "longitude": "number",
+  "expireAt": "date"
+}
+
+```
+### DELETE pin/{id}
+
+```
+http://localhost:8080/pin/{id}
+
+```
+
+### GET /visible/{user_id} 
+get pins visible for a user with {id}
+
+```
+http://localhost:8080/pin/visible/{id}
+```
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "numberOfPeople": 3,
+        "pin": "piwo piwo",
+        "latitude": 123.0,
+        "longitude": 123.0,
+        "expireAt": "2025-04-13T13:24:14.000+00:00"
+    }, 
+    ... 
+]
 ```
 
 
