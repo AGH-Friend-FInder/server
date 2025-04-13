@@ -61,13 +61,12 @@ public class UserController {
     }
 
     @PostMapping("/{user_id}/{group_id}")
-    public User addUserToGroup(@PathVariable Long user_id, @PathVariable Long group_id) {
-        User user = userRepository.findById(user_id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        Group group = groupRepository.findById(group_id)
-                .orElseThrow(() -> new IllegalArgumentException("Group not found"));
-        if (user.getGroups().contains(group)) {
-            throw new IllegalArgumentException("User is already in the group");
+    public ResponseEntity<Object> addUserToGroup(@PathVariable Long user_id, @PathVariable Long group_id) {
+        try {
+            User user = userService.addUserToGroup(user_id,group_id);
+            return ResponseEntity.ok(user);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(401).body("Invalid credentials.");
         }
         return userService.addUserToGroup(user_id,group_id);
     }
