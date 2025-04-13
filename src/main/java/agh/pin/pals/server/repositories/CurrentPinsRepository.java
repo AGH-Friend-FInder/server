@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
-public interface CurrentPinsRepository extends JpaRepository<CurrentPins, Integer> {
+public interface CurrentPinsRepository extends JpaRepository<CurrentPins, Long> {
     List<CurrentPins> findByExpireAtBefore(Timestamp currentTime);
 
 
@@ -20,7 +20,7 @@ public interface CurrentPinsRepository extends JpaRepository<CurrentPins, Intege
             "JOIN cp.groups g " +
             "JOIN g.users u " +
             "WHERE u.id = :userId")
-    List<CurrentPins> findAllPinsForUser(@Param("userId") Integer userId);
+    List<CurrentPins> findAllPinsForUser(@Param("userId") Long userId);
 
 
 }

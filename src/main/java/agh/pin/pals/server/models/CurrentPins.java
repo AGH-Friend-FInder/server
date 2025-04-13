@@ -19,7 +19,7 @@ public class CurrentPins {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer numberOfPeople;
+    private Long numberOfPeople;
 
     @ManyToMany
     @JoinTable(
@@ -46,7 +46,7 @@ public class CurrentPins {
 
     }
 
-    public CurrentPins(Integer numberOfPeople,User hostUser, String pin, Float latitude, Float longitude, Timestamp expireAt) {
+    public CurrentPins(Long numberOfPeople,User hostUser, String pin, Float latitude, Float longitude, Timestamp expireAt) {
         this.numberOfPeople = numberOfPeople;
         this.hostUser = hostUser;
         this.pin = pin;

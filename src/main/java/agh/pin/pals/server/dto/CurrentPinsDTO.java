@@ -8,16 +8,16 @@ import java.sql.Timestamp;
 import java.util.List;
 @Data
 public class CurrentPinsDTO {
-    private Integer numberOfPeople;
-    private Integer hostUserId;
+    private Long numberOfPeople;
+    private Long hostUserId;
 
     private String pin;
     private Float latitude;
     private Float longitude;
 
-    private Integer expireAtMinutes;
+    private Long expireAtMinutes;
 
-    private List<Integer> groupsId;
+    private List<Long> groupsId;
 
 
     public CurrentPinsDTO() {};

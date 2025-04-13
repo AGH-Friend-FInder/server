@@ -31,17 +31,17 @@ public class CurrentPinsController {
     }
 
     @GetMapping("/{id}")
-    public CurrentPins getCurrentPinById(@PathVariable Integer id) {
+    public CurrentPins getCurrentPinById(@PathVariable Long id) {
         return currentPinsService.getCurrentPinById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCurrentPinById(@PathVariable Integer id) {
+    public void deleteCurrentPinById(@PathVariable Long id) {
         currentPinsService.deleteCurrentPinById(id);
     }
 
     @GetMapping("/visible/{id}")
-    public List<CurrentPins> getVisibleCurrentPins(@PathVariable Integer id) {
+    public List<CurrentPins> getVisibleCurrentPins(@PathVariable Long id) {
         return currentPinsService.getVisibleCurrentPins(id);
     }
 

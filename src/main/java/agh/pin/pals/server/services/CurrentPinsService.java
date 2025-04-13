@@ -34,7 +34,7 @@ public class CurrentPinsService {
         if (host == null) {
             return null;
         }
-        Integer expireMinutes = pinsDTO.getExpireAtMinutes();
+        Long expireMinutes = pinsDTO.getExpireAtMinutes();
         Timestamp expireAt = null;
 
         if (expireMinutes != null) {
@@ -44,7 +44,7 @@ public class CurrentPinsService {
         CurrentPins pin = new CurrentPins(pinsDTO.getNumberOfPeople(), host, pinsDTO.getPin(), pinsDTO.getLatitude(), pinsDTO.getLongitude(), expireAt);
         currentPinsRepository.save(pin);
 
-        for (Integer group_id : pinsDTO.getGroupsId()){
+        for (Long group_id : pinsDTO.getGroupsId()){
             addPintoGroup(pin.getId(),group_id);
         }
         return pin;
@@ -54,7 +54,7 @@ public class CurrentPinsService {
         return currentPinsRepository.save(pin);
     }
 
-    public CurrentPins getCurrentPinById(Integer id) {
+    public CurrentPins getCurrentPinById(Long id) {
         return currentPinsRepository.findById(id).orElse(null);
     }
 
@@ -62,18 +62,18 @@ public class CurrentPinsService {
         return currentPinsRepository.findAll();
     }
 
-    public void deleteCurrentPinById(Integer id) {
+    public void deleteCurrentPinById(Long id) {
         currentPinsRepository.deleteById(id);
     }
 
-    public List<CurrentPins> getVisibleCurrentPins(Integer id) {
+    public List<CurrentPins> getVisibleCurrentPins(Long id) {
         return currentPinsRepository.findAllPinsForUser(id);
 
     }
 
 
 
-    public void addPintoGroup(Integer pin_id, Integer group_id) {
+    public void addPintoGroup(Long pin_id, Long group_id) {
         CurrentPins pin = getCurrentPinById(pin_id);
         Group group = groupRepository.findById(group_id).orElse(null);
 
