@@ -2,10 +2,12 @@ package agh.pin.pals.server.controllers;
 
 import agh.pin.pals.server.dto.GroupDTO;
 import agh.pin.pals.server.models.Group;
+import agh.pin.pals.server.models.User;
 import agh.pin.pals.server.repositories.GroupRepository;
 import agh.pin.pals.server.services.GroupService;
 import agh.pin.pals.server.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,13 +28,13 @@ public class GroupController {
     }
 
     @PostMapping
-    public Group createGroup(@RequestBody GroupDTO groupDTO) {
-        Group group = new Group();
-        group.setGroupName(groupDTO.getGroupName());
-        group.setIsPublic(groupDTO.getIsPublic());
-        group.setColor(groupDTO.getColor());
-        userService.addUserToGroup(groupDTO.getUserId(), group.getId());
-        return groupService.createGroup(group);
+    public ResponseEntity<Object> createGroup(@RequestBody GroupDTO groupDTO) {
+        try {
+            Group group = groupService.createGroup(groupDTO);
+            return ResponseEntity.ok(group);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 

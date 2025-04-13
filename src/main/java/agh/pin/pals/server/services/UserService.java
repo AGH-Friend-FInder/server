@@ -31,8 +31,13 @@ public class UserService {
     }
 
     public User addUserToGroup(Long user_id, Long group_id) {
-        User user = getUserById(user_id);
-        Group group = groupRepository.findById(group_id).orElse(null);
+        User user = userRepository.findById(user_id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Group group = groupRepository.findById(group_id)
+                .orElseThrow(() -> new IllegalArgumentException("Group not found"));
+        if (user.getGroups().contains(group)) {
+            throw new IllegalArgumentException("User is already in the group");
+        }
 
         if (group != null) {
             user.getGroups().add(group);
