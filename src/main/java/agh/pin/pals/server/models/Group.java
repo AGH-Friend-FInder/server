@@ -11,11 +11,11 @@ import java.util.List;
 @Data
 @Entity
 @Getter
-@Table(name = "groups")
+@Table(name = "`groups`")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String groupName;
     private Boolean isPublic;
