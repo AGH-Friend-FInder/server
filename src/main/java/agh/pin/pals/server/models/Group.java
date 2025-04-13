@@ -6,6 +6,7 @@ import lombok.Data;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -25,6 +26,6 @@ public class Group {
     private List<CurrentPins> currentPins;
     @ManyToMany(mappedBy = "groups")
     @JsonBackReference
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 }
 

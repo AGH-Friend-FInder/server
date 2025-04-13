@@ -28,7 +28,7 @@ public class CurrentPins {
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
     @JsonBackReference
-    private List<Group> groups;
+    private List<Group> groups = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "host_user_id", referencedColumnName = "id")
