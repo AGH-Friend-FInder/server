@@ -35,5 +35,8 @@ public class GroupController {
     public List<Group> getPublicGroup() {
         return groupRepository.findByIsPublicTrue();
     }
+
+
+
 }
 
