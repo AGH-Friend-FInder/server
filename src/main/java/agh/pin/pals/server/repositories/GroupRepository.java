@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface GroupRepository extends JpaRepository<Group, Long> {
     List<Group> findByIsPublicTrue();
-    Group findByGroupName();
+    Group findByGroupName(String groupName);
 }
 

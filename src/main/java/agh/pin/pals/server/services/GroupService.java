@@ -20,7 +20,7 @@ public class GroupService {
     }
 
     public Group createGroup(GroupDTO groupDTO) {
-        Group potentialGroup = groupRepository.findByGroupName();
+        Group potentialGroup = groupRepository.findByGroupName(groupDTO.getGroupName());
         if (potentialGroup != null) {
             throw new IllegalArgumentException("Group already exists");
         }
