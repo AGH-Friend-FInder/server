@@ -147,12 +147,12 @@ Response:
 ```
 [
     {
-        "id": 1,
-        "numberOfPeople": 3,
-        "pin": "piwo piwo",
-        "latitude": 123.0,
-        "longitude": 123.0,
-        "expireAt": "2025-04-13T13:24:14.000+00:00"
+        "numberOfPeople": "number",
+        "pin": "string",
+        "latitude": "number",
+        "longitude": "number",
+        "expireAtMinutes": "number"
+        "groupsId":List<num>
     }, 
     ... 
 ]
