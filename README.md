@@ -197,6 +197,17 @@ Request:
 }
 ```
 
+### POST /groups
 
+```
+http://localhost:8080/groups
+```
 
-
+Request
+```
+{
+"groupName": "string",
+"isPublic": true,
+"color": "255.255.255"
+}
+```
