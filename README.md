@@ -86,7 +86,7 @@ Response:
 }
 ```
 
-### POST /users/logic to register user
+### POST /users/login to register user
 ```
 http://localhost:8080/users/login
 ```
@@ -207,7 +207,8 @@ Request
 {
 "groupName": "string",
 "isPublic": true,
-"color": "255.255.255"
+"color": "255.255.255",
+"userId": 9999
 }
 ```
 
