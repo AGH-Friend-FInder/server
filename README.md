@@ -1,17 +1,15 @@
 # PinPals server
 
 
-POST /users to create a user
 
-GET /users/{id} to get a user by ID
-
-POST /groups to create a group
-
-GET /groups/{id} to get a group by ID
 
 ## enpoints
 ### GET /users/{id} to get a user by ID
-zwracana odpowiedź
+
+```
+http://localhost:8080/users/{id}
+```
+Response 
 ```json
 {
   "id": "number",
@@ -23,7 +21,10 @@ zwracana odpowiedź
 ```
 
 ### POST /users to create a user
-zapytanie w formie:
+```
+http://localhost:8080/users
+```
+Request:
 ```json
 {
   "email": "string",
@@ -34,7 +35,10 @@ zapytanie w formie:
 
 
 ### GET /groups/{id} to get a group by ID
-zwracana odpowiedź
+```
+http://localhost:8080/group/{id}
+```
+Response:
 ```json
 {
   "id": "number",
@@ -105,6 +109,53 @@ Response:
   "password": "string",
   "groups": []
 }
+```
+### GET /pin/{id}
+
+```
+http://localhost:8080/pin/{id}
+
+```
+
+Response:
+```json
+{
+  "id": "number",
+  "numberOfPeople":"number",
+  "pin": "string",
+  "latitude": "number",
+  "longitude": "number",
+  "expireAt": "date"
+}
+
+```
+### DELETE pin/{id}
+
+```
+http://localhost:8080/pin/{id}
+
+```
+
+### GET /visible/{user_id} 
+get pins visible for a user with {id}
+
+```
+http://localhost:8080/pin/visible/{id}
+```
+
+Response:
+```
+[
+    {
+        "id": 1,
+        "numberOfPeople": 3,
+        "pin": "piwo piwo",
+        "latitude": 123.0,
+        "longitude": 123.0,
+        "expireAt": "2025-04-13T13:24:14.000+00:00"
+    }, 
+    ... 
+]
 ```
 
 
