@@ -59,6 +59,7 @@ public class UserController {
     public User addUserToGroup(@PathVariable Long user_id, @PathVariable Long group_id) {
         return userService.addUserToGroup(user_id,group_id);
     }
+
     @DeleteMapping("/{user_id}/{group_id}")
     public void deleteUserFromGroup(@PathVariable Long user_id, @PathVariable Long group_id) {
         userService.removeUserFromGroup(user_id,group_id);

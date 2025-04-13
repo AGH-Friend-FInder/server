@@ -1,6 +1,7 @@
 package agh.pin.pals.server.repositories;
 
 import agh.pin.pals.server.models.CurrentPins;
+import agh.pin.pals.server.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +22,8 @@ public interface CurrentPinsRepository extends JpaRepository<CurrentPins, Long> 
             "JOIN g.users u " +
             "WHERE u.id = :userId")
     List<CurrentPins> findAllPinsForUser(@Param("userId") Long userId);
+
+    List<CurrentPins> findCurrentPinsByHostUser(User user);
 
 
 }

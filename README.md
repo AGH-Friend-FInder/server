@@ -210,3 +210,15 @@ Request
 "color": "255.255.255"
 }
 ```
+
+### POST users/{user_id}/{group_id}"
+
+```
+http://localhost:8080/users/{user_id}/{group_id}
+```
+
+### POST users/{user_id}/{group_id}"
+
+```
+http://localhost:8080/users/{user_id}/{group_id}
+```
