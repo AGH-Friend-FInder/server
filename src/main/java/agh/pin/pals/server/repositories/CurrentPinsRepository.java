@@ -20,10 +20,7 @@ public interface CurrentPinsRepository extends JpaRepository<CurrentPins, Long> 
     @Query("SELECT DISTINCT cp FROM CurrentPins cp " +
             "JOIN cp.groups g " +
             "JOIN g.users u " +
-            "WHERE u.id = :userId " +
-            "AND cp.id NOT IN (SELECT cp2.id FROM CurrentPins cp2 " +
-            "JOIN cp2.groups g2 " +
-            "JOIN g2.users u2 WHERE u2.id = :userId)")
+            "WHERE u.id = :userId")
     List<CurrentPins> findAllPinsForUser(@Param("userId") Long userId);
 
     List<CurrentPins> findCurrentPinsByHostUser(User user);

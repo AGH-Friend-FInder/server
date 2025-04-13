@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CurrentPinsService {
@@ -70,7 +72,14 @@ public class CurrentPinsService {
     }
 
     public List<CurrentPins> getVisibleCurrentPins(Long id) {
-        return currentPinsRepository.findAllPinsForUser(id);
+        List<CurrentPins> currentPins = currentPinsRepository.findAllPinsForUser(id);
+        List<CurrentPins> resultList = new ArrayList<>();
+        for (CurrentPins currentPins1 : currentPins) {
+            if (!Objects.equals(currentPins1.getHostUser().getId(), id)) {
+                resultList.add(currentPins1);
+            }
+        }
+        return resultList;
     }
 
 
