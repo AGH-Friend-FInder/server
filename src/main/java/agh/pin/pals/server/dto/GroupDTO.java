@@ -7,4 +7,5 @@ public class GroupDTO {
     private String groupName;
     private Boolean isPublic;
     private String color;
+    private Long userId;
 }
