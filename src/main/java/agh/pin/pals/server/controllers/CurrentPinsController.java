@@ -49,6 +49,7 @@ public class CurrentPinsController {
 
     @GetMapping("/visible/{id}")
     public List<CurrentPinsDTO> getVisibleCurrentPins(@PathVariable Long id) {
+        logger.info("Getting visible pins: " + id);
         List<CurrentPins> currentPins = currentPinsService.getVisibleCurrentPins(id);
         List<CurrentPinsDTO> currentPinsDTOS = new ArrayList<>();
         for (CurrentPins currentPin : currentPins) {
