@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -41,7 +42,8 @@ public class CurrentPinsService {
         Timestamp expireAt = null;
 
         if (expireMinutes != null) {
-            LocalDateTime expireDateTime = LocalDateTime.now().plusMinutes(expireMinutes);
+            ZoneId zone = ZoneId.of("Europe/Warsaw");
+            LocalDateTime expireDateTime = LocalDateTime.now(zone).plusMinutes(expireMinutes);
             expireAt = Timestamp.valueOf(expireDateTime);
         }
         CurrentPins pin = new CurrentPins(pinsDTO.getNumberOfPeople(), host, pinsDTO.getPin(), pinsDTO.getLatitude(), pinsDTO.getLongitude(), expireAt);
