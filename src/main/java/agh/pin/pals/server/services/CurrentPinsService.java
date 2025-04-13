@@ -36,7 +36,7 @@ public class CurrentPinsService {
         }
         List<CurrentPins> previousPins = currentPinsRepository.findCurrentPinsByHostUser(host);
         currentPinsRepository.deleteAll(previousPins);
-        
+
         Long expireMinutes = pinsDTO.getExpireAtMinutes();
         Timestamp expireAt = null;
 

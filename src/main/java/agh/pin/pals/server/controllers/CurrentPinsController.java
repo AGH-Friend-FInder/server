@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,9 +48,13 @@ public class CurrentPinsController {
     }
 
     @GetMapping("/visible/{id}")
-    public List<CurrentPins> getVisibleCurrentPins(@PathVariable Long id) {
-        logger.info("Getting visible pins: " + id);
-        return currentPinsService.getVisibleCurrentPins(id);
+    public List<CurrentPinsDTO> getVisibleCurrentPins(@PathVariable Long id) {
+        List<CurrentPins> currentPins = currentPinsService.getVisibleCurrentPins(id);
+        List<CurrentPinsDTO> currentPinsDTOS = new ArrayList<>();
+        for (CurrentPins currentPin : currentPins) {
+            currentPinsDTOS.add(new CurrentPinsDTO(currentPin));
+        }
+        return currentPinsDTOS;
     }
 
 
