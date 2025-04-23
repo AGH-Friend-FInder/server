@@ -6,16 +6,17 @@ import lombok.Data;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
 @Getter
-@Table(name = "groups")
+@Table(name = "`groups`")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String groupName;
     private Boolean isPublic;
@@ -25,6 +26,6 @@ public class Group {
     private List<CurrentPins> currentPins;
     @ManyToMany(mappedBy = "groups")
     @JsonBackReference
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 }
 

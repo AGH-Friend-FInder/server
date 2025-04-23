@@ -17,9 +17,9 @@ import java.util.List;
 public class CurrentPins {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    private Integer numberOfPeople;
+    private Long numberOfPeople;
 
     @ManyToMany
     @JoinTable(
@@ -28,7 +28,7 @@ public class CurrentPins {
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
     @JsonBackReference
-    private List<Group> groups;
+    private List<Group> groups = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "host_user_id", referencedColumnName = "id")
@@ -46,7 +46,7 @@ public class CurrentPins {
 
     }
 
-    public CurrentPins(Integer numberOfPeople,User hostUser, String pin, Float latitude, Float longitude, Timestamp expireAt) {
+    public CurrentPins(Long numberOfPeople,User hostUser, String pin, Float latitude, Float longitude, Timestamp expireAt) {
         this.numberOfPeople = numberOfPeople;
         this.hostUser = hostUser;
         this.pin = pin;

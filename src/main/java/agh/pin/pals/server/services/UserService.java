@@ -26,13 +26,18 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserById(Integer id) {
+    public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User addUserToGroup(Integer user_id, Integer group_id) {
-        User user = getUserById(user_id);
-        Group group = groupRepository.findById(group_id).orElse(null);
+    public User addUserToGroup(Long user_id, Long group_id) {
+        User user = userRepository.findById(user_id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Group group = groupRepository.findById(group_id)
+                .orElseThrow(() -> new IllegalArgumentException("Group not found"));
+        if (user.getGroups().contains(group)) {
+            throw new IllegalArgumentException("User is already in the group");
+        }
 
         if (group != null) {
             user.getGroups().add(group);
@@ -43,7 +48,7 @@ public class UserService {
         return user;
     }
 
-    public void removeUserFromGroup(Integer user_id, Integer group_id) {
+    public void removeUserFromGroup(Long user_id, Long group_id) {
         User user = getUserById(user_id);
         Group group = groupRepository.findById(group_id).orElse(null);
         if (group != null) {
@@ -89,7 +94,7 @@ public class UserService {
         return user;
     }
 
-    public List<Group> getUserGroups(Integer user_id) {
+    public List<Group> getUserGroups(Long user_id) {
         User user = getUserById(user_id);
         if (user == null) return null;
         return user.getGroups();

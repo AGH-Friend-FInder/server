@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CurrentPinsService {
@@ -34,17 +37,21 @@ public class CurrentPinsService {
         if (host == null) {
             return null;
         }
-        Integer expireMinutes = pinsDTO.getExpireAtMinutes();
+        List<CurrentPins> previousPins = currentPinsRepository.findCurrentPinsByHostUser(host);
+        currentPinsRepository.deleteAll(previousPins);
+
+        Long expireMinutes = pinsDTO.getExpireAtMinutes();
         Timestamp expireAt = null;
 
         if (expireMinutes != null) {
-            LocalDateTime expireDateTime = LocalDateTime.now().plusMinutes(expireMinutes);
+            ZoneId zone = ZoneId.of("Europe/Warsaw");
+            LocalDateTime expireDateTime = LocalDateTime.now(zone).plusMinutes(expireMinutes);
             expireAt = Timestamp.valueOf(expireDateTime);
         }
         CurrentPins pin = new CurrentPins(pinsDTO.getNumberOfPeople(), host, pinsDTO.getPin(), pinsDTO.getLatitude(), pinsDTO.getLongitude(), expireAt);
         currentPinsRepository.save(pin);
 
-        for (Integer group_id : pinsDTO.getGroupsId()){
+        for (Long group_id : pinsDTO.getGroupsId()){
             addPintoGroup(pin.getId(),group_id);
         }
         return pin;
@@ -54,7 +61,7 @@ public class CurrentPinsService {
         return currentPinsRepository.save(pin);
     }
 
-    public CurrentPins getCurrentPinById(Integer id) {
+    public CurrentPins getCurrentPinById(Long id) {
         return currentPinsRepository.findById(id).orElse(null);
     }
 
@@ -62,18 +69,24 @@ public class CurrentPinsService {
         return currentPinsRepository.findAll();
     }
 
-    public void deleteCurrentPinById(Integer id) {
+    public void deleteCurrentPinById(Long id) {
         currentPinsRepository.deleteById(id);
     }
 
-    public List<CurrentPins> getVisibleCurrentPins(Integer id) {
-        return currentPinsRepository.findAllPinsForUser(id);
-
+    public List<CurrentPins> getVisibleCurrentPins(Long id) {
+        List<CurrentPins> currentPins = currentPinsRepository.findAllPinsForUser(id);
+        List<CurrentPins> resultList = new ArrayList<>();
+        for (CurrentPins currentPins1 : currentPins) {
+            if (!Objects.equals(currentPins1.getHostUser().getId(), id)) {
+                resultList.add(currentPins1);
+            }
+        }
+        return resultList;
     }
 
 
 
-    public void addPintoGroup(Integer pin_id, Integer group_id) {
+    public void addPintoGroup(Long pin_id, Long group_id) {
         CurrentPins pin = getCurrentPinById(pin_id);
         Group group = groupRepository.findById(group_id).orElse(null);
 
